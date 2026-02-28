@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel — Koki Matsumoto</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="hobbies.css">
+    <link rel="stylesheet" href="travel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="nav-logo">koki matsumoto</a>
+            <ul>
+                <li><a href="hobbies.html">Hobbies</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Hero -->
+        <section id="hobbies-hero">
+            <div class="container">
+                <p class="page-back"><a href="hobbies.html"><i class="fas fa-arrow-left"></i> Back to Hobbies</a></p>
+                <p class="page-label mono">Travel</p>
+                <h1>旅行 <span style="font-size:1.5rem; font-weight:400; color:#94a3b8;">/ Travel</span></h1>
+                <p class="page-desc">訪れたことのある国を地図で表示しています。</p>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section id="map-section">
+            <div class="container">
+                <div class="map-stats">
+                    <div class="map-stat-item">
+                        <span class="map-stat-number">12</span>
+                        <span class="map-stat-label">Countries visited</span>
+                    </div>
+                    <div class="map-legend">
+                        <span class="legend-dot visited"></span><span>訪問済み</span>
+                        <span class="legend-dot unvisited"></span><span>未訪問</span>
+                    </div>
+                </div>
+                <div class="map-wrap card">
+                    <div id="world-map"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Countries List -->
+        <section id="countries">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Visited Countries</span>
+                </div>
+                <div class="countries-grid">
+                    <div class="country-card card">
+                        <div class="country-flag">🇰🇷</div>
+                        <div class="country-info">
+                            <h3>韓国</h3>
+                            <p class="country-en mono">South Korea</p>
+                        </div>
+                    </div>
+                    <div class="country-card card">
+                        <div class="country-flag">🇹🇼</div>
+                        <div class="country-info">
+                            <h3>台湾</h3>
+                            <p class="country-en mono">Taiwan</p>
+                        </div>
+                    </div>
+                    <div class="country-card card">
+                        <div class="country-flag">🇵🇭</div>
+                        <div class="country-info">
+                            <h3>フィリピン</h3>
+                            <p class="country-en mono">Philippines</p>
+                        </div>
+                    </div>
+                    <div class="country-card card">
+                        <div class="country-flag">🇹🇭</div>
+                        <div class="country-info">
+                            <h3>タイ</h3>
+                            <p class="country-en mono">Thailand</p>
+                        </div>
+                    </div>
+                    <div class="country-card card">
+                        <div class="country-flag">🇸🇬</div>
+                        <div class="country-info">
+                            <h3>シンガポール</h3>
+                            <p class="country-en mono">Singapore</p>
+                        </div>
+                    </div>
+                    <div class="country-card card">
+                        <div class="country-flag">🇦🇺</div>
+                        <div class="country-info">
+                            <h3>オーストラリア</h3>
+                            <p class="country-en mono">Australia</p>
+                        </div>
+                    </div>
+                    <div class="country-card card">
+                        <div class="country-flag">🇬🇧</div>
+                        <div class="country-info">
+                            <h3>イギリス</h3>
+                            <p class="country-en mono">United Kingdom</p>
+                        </div>
+                    </div>
+                    <div class="country-card card">
+                        <div class="country-flag">🇫🇷</div>
+                        <div class="country-info">
+                            <h3>フランス</h3>
+                            <p class="country-en mono">France</p>
+                        </div>
+                    </div>
+                    <div class="country-card card">
+                        <div class="country-flag">🇩🇪</div>
+                        <div class="country-info">
+                            <h3>ドイツ</h3>
+                            <p class="country-en mono">Germany</p>
+                        </div>
+                    </div>
+                    <div class="country-card card">
+                        <div class="country-flag">🇨🇭</div>
+                        <div class="country-info">
+                            <h3>スイス</h3>
+                            <p class="country-en mono">Switzerland</p>
+                        </div>
+                    </div>
+                    <div class="country-card card">
+                        <div class="country-flag">🇪🇸</div>
+                        <div class="country-info">
+                            <h3>スペイン</h3>
+                            <p class="country-en mono">Spain</p>
+                        </div>
+                    </div>
+                    <div class="country-card card">
+                        <div class="country-flag">🇺🇸</div>
+                        <div class="country-info">
+                            <h3>アメリカ</h3>
+                            <p class="country-en mono">United States</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="mono">&copy; 2025 Koki Matsumoto</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/js/jsvectormap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js"></script>
+    <script>
+        const map = new jsVectorMap({
+            selector: '#world-map',
+            map: 'world',
+            backgroundColor: 'transparent',
+            zoomOnScroll: true,
+            zoomButtons: true,
+            regionStyle: {
+                initial: {
+                    fill: '#1a2744',
+                    stroke: '#0d1424',
+                    strokeWidth: 0.5,
+                    fillOpacity: 1,
+                },
+                hover: {
+                    fill: '#2d3f6e',
+                    cursor: 'pointer',
+                },
+                selected: {
+                    fill: '#6366f1',
+                },
+                selectedHover: {
+                    fill: '#818cf8',
+                },
+            },
+            selectedRegions: ['CH', 'GB', 'FR', 'US', 'AU', 'PH', 'TH', 'TW', 'KR', 'DE', 'ES', 'SG'],
+            onRegionTooltipShow(event, tooltip, code) {
+                const visited = ['CH', 'GB', 'FR', 'US'];
+                const label = visited.includes(code) ? ' ✓ 訪問済み' : '';
+                tooltip.text(tooltip.text() + label);
+            },
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+/* ============================================
+   Travel Page
+   ============================================ */
+
+#map-section {
+    background: var(--bg-primary);
+    padding: 4rem 0 3rem;
+}
+
+#countries {
+    background: var(--bg-secondary);
+    padding: 4rem 0 5rem;
+}
+
+/* Stats + legend */
+.map-stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.map-stat-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+}
+
+.map-stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.map-stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.map-legend {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.legend-dot.visited   { background: #6366f1; }
+.legend-dot.unvisited { background: #1a2744; border: 1px solid #2d3f6e; }
+
+/* Map wrapper */
+.map-wrap {
+    padding: 1.5rem;
+    overflow: hidden;
+}
+
+#world-map {
+    width: 100%;
+    height: 480px;
+}
+
+/* jsvectormap overrides */
+.jvm-zoom-btn {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-secondary) !important;
+    border-radius: 6px !important;
+    font-size: 1rem !important;
+    width: 28px !important;
+    height: 28px !important;
+    line-height: 26px !important;
+}
+
+.jvm-zoom-btn:hover {
+    background: rgba(99, 102, 241, 0.1) !important;
+    color: var(--text-primary) !important;
+}
+
+.jvm-tooltip {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-primary) !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.8rem !important;
+    border-radius: 8px !important;
+    padding: 0.4rem 0.75rem !important;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.15) !important;
+}
+
+/* Country cards */
+.countries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.country-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+}
+
+.country-flag {
+    font-size: 2.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.country-info h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+}
+
+.country-en {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+}
+
+.country-note {
+    font-size: 0.83rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    #world-map { height: 280px; }
+    .countries-grid { grid-template-columns: 1fr; }
+}

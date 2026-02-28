@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobbies — Koki Matsumoto</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="hobbies.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHRGX55H07"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RHRGX55H07');
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="nav-logo">koki matsumoto</a>
+            <ul>
+                <li><a href="#books">読書</a></li>
+                <li><a href="#exercise">運動</a></li>
+                <li><a href="#travel">旅行</a></li>
+                <li><a href="#drinks">お酒</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Hero -->
+        <section id="hobbies-hero">
+            <div class="container">
+                <p class="page-back"><a href="index.html"><i class="fas fa-arrow-left"></i> Back to Profile</a></p>
+                <p class="page-label mono">Hobbies & Interests</p>
+                <h1>趣味・関心</h1>
+                <p class="page-desc">仕事以外の時間にやっていることをまとめています。</p>
+            </div>
+        </section>
+
+        <!-- 読書 -->
+        <section id="books">
+            <div class="container">
+                <div class="hobby-header">
+                    <div class="hobby-icon-wrap"><i class="fas fa-book-open"></i></div>
+                    <div>
+                        <h2>読書 <span class="hobby-en">Books</span></h2>
+                        <p class="hobby-sub">主に技術書を読んでいます。読んだ本の感想をまとめています。</p>
+                    </div>
+                </div>
+                <div class="book-grid">
+                    <div class="book-card card">
+                        <div class="book-cover">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="book-info">
+                            <div class="book-meta">
+                                <span class="book-tag">データエンジニアリング</span>
+                            </div>
+                            <h3 class="book-title">データエンジニアリングの基礎</h3>
+                            <p class="book-author">Joe Reis・Matt Housley 著 / 嶋内翔 訳</p>
+                            <div class="book-review">
+                                <p>データエンジニアリングのライフサイクル全体を体系的に解説した一冊。データの生成から取り込み、変換、提供まで、各フェーズで考慮すべき技術的・組織的な観点が丁寧にまとめられている。</p>
+                                <p>特に「データエンジニアリングの段階的な成熟度」という概念は、現場での業務を振り返る上で非常に参考になった。単なるツールの解説に留まらず、なぜその選択をするのかという視点が随所に散りばめられている点が良い。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 運動 -->
+        <section id="exercise">
+            <div class="container">
+                <div class="hobby-header">
+                    <div class="hobby-icon-wrap"><i class="fas fa-dumbbell"></i></div>
+                    <div>
+                        <h2>運動 <span class="hobby-en">Exercise</span></h2>
+                        <p class="hobby-sub">体を動かすことでリフレッシュしています。</p>
+                    </div>
+                </div>
+                <div class="hobby-cards">
+                    <div class="hobby-item card">
+                        <div class="hobby-item-icon"><i class="fas fa-table-tennis-paddle-ball"></i></div>
+                        <h3>テニス</h3>
+                        <p>学生時代から続けているテニスを週末に楽しんでいます。</p>
+                    </div>
+                    <div class="hobby-item card">
+                        <div class="hobby-item-icon"><i class="fas fa-person-running"></i></div>
+                        <h3>ランニング</h3>
+                        <p>福岡の街をランニングしながら気分転換をしています。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 旅行 -->
+        <section id="travel">
+            <div class="container">
+                <div class="hobby-header">
+                    <div class="hobby-icon-wrap"><i class="fas fa-plane"></i></div>
+                    <div>
+                        <h2>旅行 <span class="hobby-en">Travel</span></h2>
+                        <p class="hobby-sub">国内外を問わず、新しい場所を訪れるのが好きです。</p>
+                    </div>
+                </div>
+                <div class="hobby-cards">
+                    <div class="hobby-item card">
+                        <div class="hobby-item-icon"><i class="fas fa-torii-gate"></i></div>
+                        <h3>国内旅行</h3>
+                        <p>九州を中心に、気になった場所を訪れています。</p>
+                    </div>
+                    <a href="travel.html" class="hobby-item card hobby-item-link">
+                        <div class="hobby-item-icon"><i class="fas fa-earth-asia"></i></div>
+                        <h3>海外旅行 <i class="fas fa-arrow-right hobby-arrow"></i></h3>
+                        <p>12カ国を訪問済み。アジア・ヨーロッパ・アメリカ・オセアニアと幅広く旅しています。訪問国の地図はこちら。</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- お酒 -->
+        <section id="drinks">
+            <div class="container">
+                <div class="hobby-header">
+                    <div class="hobby-icon-wrap"><i class="fas fa-beer-mug-empty"></i></div>
+                    <div>
+                        <h2>お酒 <span class="hobby-en">Drinks</span></h2>
+                        <p class="hobby-sub">仕事終わりや週末に、お気に入りのお酒を楽しんでいます。</p>
+                    </div>
+                </div>
+                <div class="hobby-cards">
+                    <div class="hobby-item card">
+                        <div class="hobby-item-icon"><i class="fas fa-wine-glass"></i></div>
+                        <h3>ワイン</h3>
+                        <p>赤ワインが好きで、産地や品種を少しずつ勉強中です。</p>
+                    </div>
+                    <div class="hobby-item card">
+                        <div class="hobby-item-icon"><i class="fas fa-whiskey-glass"></i></div>
+                        <h3>ウイスキー</h3>
+                        <p>シングルモルトを中心に、ゆっくり楽しんでいます。</p>
+                    </div>
+                    <div class="hobby-item card">
+                        <div class="hobby-item-icon"><i class="fas fa-beer-mug-empty"></i></div>
+                        <h3>クラフトビール</h3>
+                        <p>福岡のクラフトビール店を巡るのが好きです。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="mono">&copy; 2025 Koki Matsumoto</p>
+        </div>
+    </footer>
+</body>
+</html>
