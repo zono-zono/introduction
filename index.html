@@ -42,7 +42,7 @@
                 <div class="hero-text">
                     <p class="hero-greeting">Hello, I'm</p>
                     <h1>Koki Matsumoto</h1>
-                    <p class="hero-role"><span class="mono" id="typing-role"></span><span class="typing-cursor">|</span></p>
+                    <p class="hero-role"><span class="mono">Data Engineer</span></p>
                     <p class="hero-desc en">
                         Based in Fukuoka, Japan.<br>
                         Working as a Data Engineer.
@@ -317,39 +317,5 @@
             <p class="mono">&copy; 2025 Koki Matsumoto</p>
         </div>
     </footer>
-    <script>
-        const roles = ['Data Engineer', 'AI Engineer', 'Analytics Engineer'];
-        let roleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const el = document.getElementById('typing-role');
-
-        function type() {
-            const current = roles[roleIndex];
-
-            if (isDeleting) {
-                el.textContent = current.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                el.textContent = current.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let delay = isDeleting ? 60 : 100;
-
-            if (!isDeleting && charIndex === current.length) {
-                delay = 1800;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                roleIndex = (roleIndex + 1) % roles.length;
-                delay = 400;
-            }
-
-            setTimeout(type, delay);
-        }
-
-        type();
-    </script>
 </body>
 </html>
