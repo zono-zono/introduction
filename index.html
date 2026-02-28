@@ -3,115 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Koki's Profile</title>
+    <title>Koki Matsumoto — Data Engineer</title>
     <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHRGX55H07"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-RHRGX55H07');
     </script>
 </head>
 <body>
     <header>
         <nav>
+            <span class="nav-logo">KM</span>
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#interviews">Interviews</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+        <!-- Hero -->
         <section id="hero">
-            <div class="hero-content">
-                <h1>Koki Matsumoto</h1>
-                <p class="tagline">Data Engineer</p>
-                <a href="#about" class="cta-button">Learn More</a>
+            <div class="hero-inner">
+                <div class="hero-text">
+                    <p class="hero-greeting">Hello, I'm</p>
+                    <h1>Koki Matsumoto</h1>
+                    <p class="hero-role"><span class="mono">Data Engineer</span> / 松本 興樹</p>
+                    <p class="hero-desc en">
+                        Based in Fukuoka, Japan.<br>
+                        Working as a Data Engineer.
+                    </p>
+                    <p class="hero-desc ja">
+                        福岡を拠点に、データエンジニアとして活動しています。
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#about" class="btn-primary">About Me</a>
+                        <a href="#contact" class="btn-secondary">Links</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrap">
+                    <img class="hero-avatar-img" src="./profile.jpg" alt="Koki Matsumoto">
+                </div>
             </div>
         </section>
 
+        <!-- About -->
         <section id="about">
             <div class="container">
-                <h2>About Me</h2>
-                <p>Koki Matsumotoです。データエンジニアとして、データ基盤構築からデータ品質向上まで幅広い領域で活動しています。</p>
-                <p>現在は<strong>みんなの銀行</strong>でデータエンジニアとして勤務し、データマネジメントとデータ基盤構築に取り組んでいます。</p>
-                <p>また、<strong>福岡データエンジニアリング勉強会</strong>のコミュニティオーガナイザーとして、九州地区のデータエンジニアリングコミュニティの発展に貢献しています。</p>
+                <div class="section-header">
+                    <span class="section-tag">About Me</span>
+                </div>
+                <div class="about-card card">
+                    <div class="bilingual">
+                        <div class="lang-block en-block">
+                            <span class="lang-label">EN</span>
+                            <div class="lang-content">
+                                <p>I'm a Data Engineer based in Fukuoka, Japan. I've been working as an Engineer since 2020, designing and building data infrastructure and pipelines.</p>
+                                <p>I'm also an organizer of Fukuoka Data Engineering Meetup, a monthly community for data engineers in the Kyushu region.</p>
+                            </div>
+                        </div>
+                        <div class="lang-block ja-block">
+                            <span class="lang-label">JA</span>
+                            <div class="lang-content">
+                                <p>福岡在住のデータエンジニアです。2020年からエンジニアとして働いており、データ基盤の設計・構築やパイプラインの開発に携わっています。</p>
+                                <p>また、九州のデータエンジニア向けコミュニティ「福岡データエンジニアリング勉強会」のオーガナイザーも務めています。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="career-timeline">
+                        <div class="career-item">
+                            <span class="career-period mono">2022 – present</span>
+                            <div class="career-detail">
+                                <span class="career-role">Data Engineer</span>
+                            </div>
+                        </div>
+                        <div class="career-item">
+                            <span class="career-period mono">2021 – present</span>
+                            <div class="career-detail">
+                                <span class="career-role">Organizer</span>
+                                <span class="career-sep">—</span>
+                                <span class="career-company">Fukuoka Data Engineering Meetup（福岡データエンジニアリング勉強会）</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- Skills -->
         <section id="skills">
             <div class="container">
-                <h2>Technical Skills</h2>
+                <div class="section-header">
+                    <span class="section-tag">Skills</span>
+                </div>
                 <div class="skills-grid">
                     <div class="skill-item">
-                        <h3>Data Pipeline</h3>
-                        <p>バッチ・リアルタイムパイプライン構築、ETL/ELT設計</p>
+                        <div class="skill-icon"><i class="fas fa-code"></i></div>
+                        <h3>Languages</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">Java</span>
+                            <span class="tag">Shell Script</span>
+                        </div>
                     </div>
                     <div class="skill-item">
-                        <h3>Cloud Platform</h3>
-                        <p>Google Cloud Platform (認定取得), AWS, データ基盤構築</p>
+                        <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+                        <h3>Cloud & Infra</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Google Cloud Platform</span>
+                            <span class="tag">AWS</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Kubernetes</span>
+                            <span class="tag">Terraform</span>
+                        </div>
                     </div>
                     <div class="skill-item">
-                        <h3>Programming</h3>
-                        <p>Python, SQL, データ処理・分析基盤開発</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Data Management</h3>
-                        <p>データモデリング, データ品質管理, データガバナンス</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Analytics & ML</h3>
-                        <p>統計分析 (準1級), ディープラーニング (G検定)</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Community</h3>
-                        <p>技術コミュニティ運営, 勉強会企画, 技術発表</p>
+                        <div class="skill-icon"><i class="fas fa-database"></i></div>
+                        <h3>Data</h3>
+                        <div class="skill-tags">
+                            <span class="tag">BigQuery</span>
+                            <span class="tag">Apache Kafka</span>
+                            <span class="tag">dbt</span>
+                            <span class="tag">Dataform</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="experience">
+        <!-- Certifications -->
+        <section id="certifications">
             <div class="container">
-                <h2>Professional Experience</h2>
-                <div class="experience-timeline">
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <h3>データエンジニア</h3>
-                            <span class="company">みんなの銀行</span>
-                            <span class="period">現在</span>
+                <div class="section-header">
+                    <span class="section-tag">Certifications</span>
+                </div>
+                <div class="cert-list-wrap card">
+                    <ul class="cert-list">
+                        <li>
+                            <span class="cert-year mono">2022</span>
+                            <div class="cert-info">
+                                <span class="cert-name">統計検定 準1級 / Japan Statistical Society Certificate Pre-1</span>
+                                <span class="cert-org">日本統計学会</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="cert-year mono">2021</span>
+                            <div class="cert-info">
+                                <span class="cert-name">G検定（ディープラーニング） / G Test (Deep Learning)</span>
+                                <span class="cert-org">日本ディープラーニング協会</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community -->
+        <section id="community">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Community</span>
+                </div>
+                <div class="community-card card">
+                    <div class="community-header">
+                        <img
+                            src="https://media.connpass.com/thumbs/83/70/8370c8ab6041a9f35c70088efd17642b.png"
+                            alt="Fukuoka Data Engineering Study Group"
+                            class="community-logo"
+                        >
+                        <div class="community-title">
+                            <h3>Fukuoka Data Engineering Study Group</h3>
+                            <p class="community-sub">福岡データエンジニアリング勉強会</p>
                         </div>
-                        <p>フィンテック領域でのデータマネジメントとデータ基盤構築を担当。データ品質向上とデータガバナンスの推進に従事。</p>
+                        <a href="https://fukuoka-data-engineering.connpass.com/" target="_blank" class="community-link">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
-                    
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <h3>コミュニティ運営</h3>
-                            <span class="company">福岡データエンジニアリング勉強会</span>
-                            <span class="period">継続中</span>
+                    <div class="bilingual community-desc">
+                        <div class="lang-block en-block">
+                            <span class="lang-label">EN</span>
+                            <div class="lang-content">
+                                <p>A technical community for people involved in data engineering in Fukuoka — to learn together, grow, and connect. We cover a wide range of topics including data infrastructure design, ETL/ELT pipelines, DWH operations, data modeling, and MLOps, with a focus on sharing challenges and insights.</p>
+                            </div>
                         </div>
-                        <p>九州地区最大級のデータエンジニアリングコミュニティの主催者として、定期勉強会の企画・運営を担当。</p>
+                        <div class="lang-block ja-block">
+                            <span class="lang-label">JA</span>
+                            <div class="lang-content">
+                                <p>福岡の地でデータエンジニアリングに関わる人々が、共に学び、成長し、繋がるための技術コミュニティです。データ基盤の設計・構築、ETL/ELTパイプライン、DWH運用、データモデリング、MLOpsなど多岐にわたるテーマを扱い、課題や知見の共有を目指しています。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Interviews -->
+        <section id="interviews">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Interviews</span>
+                </div>
+                <div class="interviews-list">
+                    <a href="https://note.minna-no-ginko.com/n/nb3321f3ea56b" target="_blank" class="interview-item card">
+                        <img
+                            src="https://assets.st-note.com/production/uploads/images/152337477/34f1d2177db4babd53df56aa21b21038.png"
+                            alt="データ活用を陰で支える立役者！デジタルバンクのデータエンジニア・インタビュー"
+                            class="interview-thumb"
+                        >
+                        <div class="interview-body">
+                            <div class="interview-meta">
+                                <span class="interview-source">note / みんなの銀行</span>
+                                <span class="interview-date mono">2024.09</span>
+                            </div>
+                            <h3>データ活用を陰で支える立役者！デジタルバンクのデータエンジニア・インタビュー</h3>
+                            <p>データおよびデータ分析基盤を担当するDWH Groupのインタビュー。データエンジニアの業務内容やチーム体制について紹介しています。</p>
+                            <span class="interview-arrow"><i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                    <a href="https://efc.fukuoka.jp/interview/7194/" target="_blank" class="interview-item card">
+                        <img
+                            src="https://efc.fukuoka.jp/wp-content/uploads/2025/12/f92749da458bc53b4d6f87c3de1cae6c.jpg"
+                            alt="福岡データエンジニアリング勉強会インタビュー"
+                            class="interview-thumb"
+                        >
+                        <div class="interview-body">
+                            <div class="interview-meta">
+                                <span class="interview-source">エンジニアフレンドリーシティ福岡</span>
+                                <span class="interview-date mono">2025.12</span>
+                            </div>
+                            <h3>【福岡データエンジニアリング勉強会】情報交換もお悩み相談も、リアルで会えばもっと深まる</h3>
+                            <p>福岡データエンジニアリング勉強会の立ち上げと活動について。"福岡中のデータエンジニアと繋がりたい"という想いから始めたコミュニティを紹介しています。</p>
+                            <span class="interview-arrow"><i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                    <a href="https://efc.fukuoka.jp/information/7277/" target="_blank" class="interview-item card">
+                        <img
+                            src="https://efc.fukuoka.jp/wp-content/uploads/2026/02/f61d1287bdc5b2e43adb2fcfc0788462.jpg"
+                            alt="EFCアワード2025レポート"
+                            class="interview-thumb"
+                        >
+                        <div class="interview-body">
+                            <div class="interview-meta">
+                                <span class="interview-source">エンジニアフレンドリーシティ福岡</span>
+                                <span class="interview-date mono">2026.02</span>
+                            </div>
+                            <h3>課題に向き合い、時代をひらく福岡のエンジニアの力｜EFCアワード2025レポート</h3>
+                            <p>第7回EFCアワード表彰式のレポート。コミュニティ部門にて福岡データエンジニアリング勉強会が受賞しました。</p>
+                            <span class="interview-arrow"><i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
         <section id="contact">
             <div class="container">
-                <h2>Contact</h2>
-                <p>お気軽にお問い合わせください。</p>
+                <div class="section-header">
+                    <span class="section-tag">Contact & Links</span>
+                </div>
                 <div class="contact-links">
-                    <a href="https://www.linkedin.com/in/koki-matsumoto-3a4b9b184/" target="_blank">LinkedIn</a>
-                    <a href="https://speakerdeck.com/kokimoto" target="_blank">Speaker Deck</a>
-                    <a href="https://fukuoka-data-engineering.connpass.com/" target="_blank">Connpass</a>
-                    <a href="https://github.com/zono-zono" target="_blank">GitHub</a>
+                    <a href="https://www.linkedin.com/in/koki-matsumoto-3a4b9b184/" target="_blank" class="contact-link">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/zono-zono" target="_blank" class="contact-link">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://speakerdeck.com/kokimoto" target="_blank" class="contact-link">
+                        <i class="fas fa-desktop"></i>
+                        <span>Speaker Deck</span>
+                    </a>
+                    <a href="https://fukuoka-data-engineering.connpass.com/" target="_blank" class="contact-link">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Connpass</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -119,7 +301,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Koki. All rights reserved.</p>
+            <p class="mono">&copy; 2025 Koki Matsumoto</p>
         </div>
     </footer>
 </body>
