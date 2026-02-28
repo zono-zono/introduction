@@ -107,16 +107,33 @@
     gap: 0.75rem;
 }
 
-.hobby-en {
+.hobby-ja {
     font-size: 0.95rem;
     font-weight: 400;
     color: var(--text-muted);
-    font-family: 'JetBrains Mono', monospace;
+}
+
+.hobby-sub-en {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.2rem;
 }
 
 .hobby-sub {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.page-h1-ja {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.page-desc-en {
+    font-size: 1rem;
     color: var(--text-secondary);
+    margin-bottom: 0.25rem;
 }
 
 /* Generic hobby cards */
@@ -145,12 +162,30 @@
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 0.5rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
 }
 
-.hobby-item p {
+.hobby-item-ja {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.hobby-item-en {
     font-size: 0.83rem;
     color: var(--text-secondary);
     line-height: 1.65;
+    margin-bottom: 0.25rem;
+}
+
+.hobby-item-ja-p {
+    font-size: 0.77rem;
+    color: var(--text-muted);
+    line-height: 1.6;
 }
 
 /* Book cards */
@@ -218,15 +253,24 @@
     font-family: 'JetBrains Mono', monospace;
 }
 
-.book-review p {
+.book-title-ja {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
+    margin-top: -0.3rem;
+}
+
+.review-en {
     font-size: 0.875rem;
     color: var(--text-secondary);
     line-height: 1.8;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
 }
 
-.book-review p:last-child {
-    margin-bottom: 0;
+.review-ja {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.8;
 }
 
 /* Linked hobby card */
