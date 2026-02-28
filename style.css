@@ -820,16 +820,22 @@ section {
     gap: 0.5rem;
 }
 
-.hobby-card-en {
+.hobby-card-ja {
     font-size: 0.75rem;
     font-weight: 400;
     color: var(--text-muted);
     font-family: 'JetBrains Mono', monospace;
 }
 
-.hobby-card-body p {
+.hobby-card-en-p {
     font-size: 0.83rem;
     color: var(--text-secondary);
+    margin-bottom: 0.1rem;
+}
+
+.hobby-card-ja-p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
 }
 
 .hobby-card-arrow {
