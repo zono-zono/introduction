@@ -296,6 +296,86 @@
     opacity: 1;
 }
 
+/* Wine cards */
+#wines { background: var(--bg-secondary); padding: 5rem 0; }
+
+.wine-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 760px;
+}
+
+.wine-card {
+    display: flex;
+    gap: 1.75rem;
+    align-items: flex-start;
+}
+
+.wine-bottle {
+    width: 80px;
+    height: 110px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    background: linear-gradient(160deg, #4a0e2e 0%, #2d1b4e 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.wine-info {
+    flex: 1;
+}
+
+.wine-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+.wine-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent-2);
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    padding: 0.15rem 0.55rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.wine-tag-red {
+    color: #f87171;
+    background: rgba(248, 113, 113, 0.1);
+    border-color: rgba(248, 113, 113, 0.2);
+}
+
+.wine-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.1rem;
+}
+
+.wine-title-ja {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
+}
+
+.wine-producer {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+}
+
 /* Responsive */
 @media (max-width: 640px) {
     #hobbies-hero h1 { font-size: 2.25rem; }
