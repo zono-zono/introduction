@@ -9,3 +9,9 @@ CLAUDE.md
 README.md
 wrangler.jsonc
 *.css.map
+ogp-template.html
+generate-ogp.mjs
+.assetsignore
+package.json
+package-lock.json
+node_modules/
