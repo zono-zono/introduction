@@ -299,6 +299,31 @@
     line-height: 1.8;
 }
 
+/* Linked book card */
+.book-card-link {
+    text-decoration: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.book-card-link:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--glow-hover);
+    transform: translateY(-2px);
+}
+
+.book-ext-icon {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    vertical-align: middle;
+    margin-left: 0.3rem;
+}
+
+.book-card-link:hover .book-ext-icon {
+    opacity: 1;
+}
+
 /* Linked hobby card */
 .hobby-item-link {
     text-decoration: none;
