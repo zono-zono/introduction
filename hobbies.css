@@ -69,9 +69,9 @@
 
 /* Sections */
 #books       { background: var(--bg-secondary); padding: 5rem 0; }
+#travel      { background: var(--bg-primary);   padding: 5rem 0; }
+#drinks      { background: var(--bg-secondary); padding: 5rem 0; }
 #exercise    { background: var(--bg-primary);   padding: 5rem 0; }
-#travel      { background: var(--bg-secondary); padding: 5rem 0; }
-#drinks      { background: var(--bg-primary);   padding: 5rem 0; }
 
 /* Hobby section header */
 .hobby-header {
