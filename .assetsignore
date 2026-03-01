@@ -1,0 +1,11 @@
+.git/
+.github/
+.claude/
+.kiro/
+.wrangler/
+.vscode/
+.gitignore
+CLAUDE.md
+README.md
+wrangler.jsonc
+*.css.map
