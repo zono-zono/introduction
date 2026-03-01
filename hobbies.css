@@ -323,7 +323,8 @@
 }
 
 /* Wine cards */
-#wines { background: var(--bg-secondary); padding: 5rem 0; }
+#wines     { background: var(--bg-secondary); padding: 5rem 0; }
+#book-list { background: var(--bg-secondary); padding: 5rem 0; }
 
 .wine-grid {
     display: flex;
