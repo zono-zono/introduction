@@ -378,6 +378,31 @@
     font-family: 'JetBrains Mono', monospace;
 }
 
+.wine-card-link {
+    text-decoration: none;
+    display: flex;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.wine-card-link:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--glow-hover);
+    transform: translateY(-2px);
+}
+
+.wine-ext-icon {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    vertical-align: middle;
+    margin-left: 0.3rem;
+}
+
+.wine-card-link:hover .wine-ext-icon {
+    opacity: 1;
+}
+
 /* Responsive */
 @media (max-width: 640px) {
     #hobbies-hero h1 { font-size: 2.25rem; }
