@@ -456,6 +456,111 @@
     opacity: 1;
 }
 
+/* Blog section */
+#blog { background: var(--bg-secondary); padding: 5rem 0; }
+
+.blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 760px;
+}
+
+.blog-item {
+    display: block;
+    padding: 1.5rem;
+    text-decoration: none;
+    position: relative;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.blog-item:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--glow-hover);
+    transform: translateY(-2px);
+}
+
+.blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.blog-platform {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.55rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.blog-platform-qiita {
+    color: #55c500;
+    background: rgba(85, 197, 0, 0.1);
+    border: 1px solid rgba(85, 197, 0, 0.2);
+}
+
+.blog-platform-zenn {
+    color: #3ea8ff;
+    background: rgba(62, 168, 255, 0.1);
+    border: 1px solid rgba(62, 168, 255, 0.2);
+}
+
+.blog-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.blog-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+}
+
+.blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+}
+
+.blog-tag {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    padding: 0.1rem 0.45rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.blog-desc {
+    font-size: 0.83rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    padding-right: 2rem;
+}
+
+.blog-arrow {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--accent-2);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.blog-item:hover .blog-arrow {
+    opacity: 1;
+}
+
 /* Responsive */
 @media (max-width: 640px) {
     #hobbies-hero h1 { font-size: 2.25rem; }
