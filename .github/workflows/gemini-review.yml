@@ -35,6 +35,38 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DIFF: ${{ steps.diff.outputs.diff }}
+          PROMPT_BASE: |
+            あなたは個人の自己紹介サイト（HTML/CSS静的サイト）のコードレビュアーです。以下のPR diffをレビューし、JSONのみで回答してください。
+
+            ## 【最重要】個人情報・機密情報の漏洩チェック
+            以下が含まれている場合は必ずCOMMENTとしてください：
+            - 電話番号（携帯・固定電話）
+            - プライベートなメールアドレス
+            - 自宅住所（市区町村より詳細な情報）
+            - パスワード・APIキー・アクセストークン・シークレット
+            - 非公開にしたい個人的な情報
+            ※ G-RHRGX55H07（Google Analytics ID）は許容
+
+            ## コンテンツ品質
+            - 日本語・英語の表現に不自然な点がないか
+            - 誤字・脱字がないか
+
+            ## HTMLファイルのチェック
+            - img要素にalt属性が適切に設定されているか
+            - metaタグ・OGPタグが整合しているか
+            - 外部リンクにrel="noopener noreferrer"が付いているか
+            - ページ間リンクのhref先が存在するファイルか
+
+            ## CSSファイルのチェック
+            - 不要な重複スタイルや未使用のセレクタがないか
+
+            ## JS/MJSファイルのチェック
+            - APIキー・シークレットがハードコードされていないか
+
+            ## 回答形式
+            - 問題がない場合（軽微な提案含む）: {"verdict": "APPROVE", "comment": "<日本語で簡潔なサマリ>"}
+            - 重大な問題がある場合: {"verdict": "COMMENT", "comment": "<日本語で問題の説明>"}
+            - 軽微なスタイル提案はAPPROVEのコメントに含める
         run: |
           if [ "${{ steps.diff.outputs.truncated }}" = "true" ]; then
             echo "verdict=SKIP" >> $GITHUB_OUTPUT
@@ -42,43 +74,10 @@ jobs:
             exit 0
           fi
 
-          PROMPT="あなたは個人の自己紹介サイト（HTML/CSS静的サイト）のコードレビュアーです。以下のPR diffをレビューし、JSONのみで回答してください。
-
-## 【最重要】個人情報・機密情報の漏洩チェック
-以下が含まれている場合は必ずCOMMENTとしてください：
-- 電話番号（携帯・固定電話）
-- プライベートなメールアドレス
-- 自宅住所（市区町村より詳細な情報）
-- パスワード・APIキー・アクセストークン・シークレット
-- 非公開にしたい個人的な情報
-※ G-RHRGX55H07（Google Analytics ID）は許容
-
-## コンテンツ品質
-- 日本語・英語の表現に不自然な点がないか
-- 誤字・脱字がないか
-
-## HTMLファイルのチェック
-- img要素にalt属性が適切に設定されているか
-- metaタグ・OGPタグが整合しているか
-- 外部リンクにrel=\"noopener noreferrer\"が付いているか
-- ページ間リンクのhref先が存在するファイルか
-
-## CSSファイルのチェック
-- 不要な重複スタイルや未使用のセレクタがないか
-
-## JS/MJSファイルのチェック
-- APIキー・シークレットがハードコードされていないか
-
-## 回答形式
-- 問題がない場合（軽微な提案含む）: {\"verdict\": \"APPROVE\", \"comment\": \"<日本語で簡潔なサマリ>\"}
-- 重大な問題がある場合: {\"verdict\": \"COMMENT\", \"comment\": \"<日本語で問題の説明>\"}
-- 軽微なスタイル提案はAPPROVEのコメントに含める
-
-Diff:
-${DIFF}"
+          FULL_PROMPT=$(printf '%s\nDiff:\n%s' "${PROMPT_BASE}" "${DIFF}")
 
           PAYLOAD=$(jq -n \
-            --arg text "$PROMPT" \
+            --arg text "$FULL_PROMPT" \
             '{contents:[{parts:[{text:$text}]}],generationConfig:{responseMimeType:"application/json"}}')
 
           RESPONSE=$(curl -s -w "\n%{http_code}" \
