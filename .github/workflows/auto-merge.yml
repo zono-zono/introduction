@@ -1,17 +1,20 @@
-name: Enable Auto-merge
+name: Merge on CodeRabbit Approval
 
 on:
-  pull_request:
-    types: [opened, reopened]
+  pull_request_review:
+    types: [submitted]
 
 jobs:
-  enable-auto-merge:
+  merge-on-approval:
     runs-on: ubuntu-latest
+    if: |
+      github.event.review.user.login == 'coderabbitai[bot]' &&
+      github.event.review.state == 'approved'
     permissions:
       pull-requests: write
       contents: write
     steps:
-      - name: Enable auto-merge
-        run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
+      - name: Merge PR
+        run: gh pr merge --squash "${{ github.event.pull_request.html_url }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
