@@ -1,0 +1,71 @@
+<svg width="800" height="360" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="a" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#F6821F"/>
+    </marker>
+    <marker id="b" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="360" rx="16" fill="#0f172a"/>
+
+  <!-- ── User box ── -->
+  <rect x="20" y="130" width="165" height="100" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <!-- Browser chrome -->
+  <rect x="38" y="148" width="129" height="56" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <rect x="38" y="148" width="129" height="16" rx="5" fill="#1e3a5f"/>
+  <rect x="38" y="156" width="129" height="8" fill="#1e3a5f"/>
+  <circle cx="47" cy="156" r="3" fill="#ef4444"/>
+  <circle cx="57" cy="156" r="3" fill="#f59e0b"/>
+  <circle cx="67" cy="156" r="3" fill="#22c55e"/>
+  <rect x="77" y="151" width="84" height="10" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8"/>
+  <text x="102" y="220" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="600" font-family="'Segoe UI',Arial,sans-serif">User</text>
+
+  <!-- ── Arrows ── -->
+  <line x1="185" y1="165" x2="279" y2="165" stroke="#F6821F" stroke-width="1.8" marker-end="url(#a)"/>
+  <text x="232" y="157" text-anchor="middle" fill="#F6821F" font-size="10" font-family="Arial,sans-serif">HTTPS Request</text>
+  <line x1="279" y1="183" x2="185" y2="183" stroke="#475569" stroke-width="1.8" marker-end="url(#b)"/>
+  <text x="232" y="200" text-anchor="middle" fill="#475569" font-size="10" font-family="Arial,sans-serif">Response</text>
+
+  <!-- ── Cloudflare container ── -->
+  <rect x="289" y="50" width="490" height="270" rx="14" fill="#111827" stroke="#F6821F" stroke-width="2"/>
+
+  <!-- CF header -->
+  <rect x="289" y="50" width="490" height="50" rx="14" fill="#F6821F"/>
+  <rect x="289" y="82" width="490" height="18" fill="#F6821F"/>
+
+  <!-- Cloud icon -->
+  <ellipse cx="325" cy="70" rx="16" ry="11" fill="rgba(255,255,255,0.3)"/>
+  <ellipse cx="338" cy="65" rx="12" ry="9" fill="rgba(255,255,255,0.3)"/>
+  <ellipse cx="351" cy="70" rx="14" ry="10" fill="rgba(255,255,255,0.3)"/>
+  <rect x="313" y="70" width="51" height="12" fill="rgba(255,255,255,0.3)"/>
+  <text x="380" y="77" fill="#fff" font-size="17" font-weight="700" font-family="'Segoe UI',Arial,sans-serif">Cloudflare</text>
+
+  <!-- ── Workers section ── -->
+  <rect x="309" y="118" width="452" height="115" rx="8" fill="#1e293b" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="319" y="140" fill="#fb923c" font-size="12" font-weight="700" font-family="'Segoe UI',Arial,sans-serif">Workers</text>
+  <text x="374" y="140" fill="#94a3b8" font-size="11" font-family="'Segoe UI',Arial,sans-serif">— Static Site Hosting</text>
+  <text x="618" y="140" fill="#475569" font-size="10" font-family="'Courier New',monospace">koki-matsumoto.workers.dev</text>
+
+  <!-- Asset badges -->
+  <rect x="319" y="151" width="105" height="26" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="371" y="169" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="'Segoe UI',Arial,sans-serif">HTML (6 pages)</text>
+
+  <rect x="433" y="151" width="60" height="26" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="463" y="169" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="'Segoe UI',Arial,sans-serif">CSS</text>
+
+  <rect x="502" y="151" width="72" height="26" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="538" y="169" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="'Segoe UI',Arial,sans-serif">Images</text>
+
+  <rect x="583" y="151" width="163" height="26" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="664" y="169" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="'Segoe UI',Arial,sans-serif">Global Edge Network</text>
+
+  <text x="535" y="216" text-anchor="middle" fill="#475569" font-size="11" font-family="'Segoe UI',Arial,sans-serif">Serves static assets via Cloudflare's global edge</text>
+
+  <!-- ── Web Analytics section ── -->
+  <rect x="309" y="250" width="452" height="52" rx="8" fill="#1e293b" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="535" y="272" text-anchor="middle" fill="#fb923c" font-size="12" font-weight="600" font-family="'Segoe UI',Arial,sans-serif">Web Analytics</text>
+  <text x="535" y="290" text-anchor="middle" fill="#475569" font-size="11" font-family="'Segoe UI',Arial,sans-serif">Privacy-first · No cookies · Powered by Cloudflare</text>
+</svg>
