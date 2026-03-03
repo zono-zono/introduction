@@ -19,7 +19,13 @@ jobs:
       - name: Get PR diff
         id: diff
         run: |
-          DIFF=$(git diff origin/${{ github.base_ref }}...HEAD -- . ':(exclude).github/' | head -c 8000)
+          FULL_DIFF=$(git diff origin/${{ github.base_ref }}...HEAD -- . ':(exclude).github/')
+          TRUNCATED=false
+          if [ ${#FULL_DIFF} -gt 8000 ]; then
+            TRUNCATED=true
+          fi
+          DIFF=$(echo "$FULL_DIFF" | head -c 8000)
+          echo "truncated=$TRUNCATED" >> $GITHUB_OUTPUT
           echo "diff<<EOF" >> $GITHUB_OUTPUT
           echo "$DIFF" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -28,23 +34,57 @@ jobs:
         id: review
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DIFF: ${{ steps.diff.outputs.diff }}
         run: |
+          if [ "${{ steps.diff.outputs.truncated }}" = "true" ]; then
+            echo "verdict=SKIP" >> $GITHUB_OUTPUT
+            echo "Diff truncated, skipping Gemini review"
+            exit 0
+          fi
+
+          PROMPT="あなたは個人の自己紹介サイト（HTML/CSS静的サイト）のコードレビュアーです。以下のPR diffをレビューし、JSONのみで回答してください。
+
+## 【最重要】個人情報・機密情報の漏洩チェック
+以下が含まれている場合は必ずCOMMENTとしてください：
+- 電話番号（携帯・固定電話）
+- プライベートなメールアドレス
+- 自宅住所（市区町村より詳細な情報）
+- パスワード・APIキー・アクセストークン・シークレット
+- 非公開にしたい個人的な情報
+※ G-RHRGX55H07（Google Analytics ID）は許容
+
+## コンテンツ品質
+- 日本語・英語の表現に不自然な点がないか
+- 誤字・脱字がないか
+
+## HTMLファイルのチェック
+- img要素にalt属性が適切に設定されているか
+- metaタグ・OGPタグが整合しているか
+- 外部リンクにrel=\"noopener noreferrer\"が付いているか
+- ページ間リンクのhref先が存在するファイルか
+
+## CSSファイルのチェック
+- 不要な重複スタイルや未使用のセレクタがないか
+
+## JS/MJSファイルのチェック
+- APIキー・シークレットがハードコードされていないか
+
+## 回答形式
+- 問題がない場合（軽微な提案含む）: {\"verdict\": \"APPROVE\", \"comment\": \"<日本語で簡潔なサマリ>\"}
+- 重大な問題がある場合: {\"verdict\": \"COMMENT\", \"comment\": \"<日本語で問題の説明>\"}
+- 軽微なスタイル提案はAPPROVEのコメントに含める
+
+Diff:
+${DIFF}"
+
+          PAYLOAD=$(jq -n \
+            --arg text "$PROMPT" \
+            '{contents:[{parts:[{text:$text}]}],generationConfig:{responseMimeType:"application/json"}}')
+
           RESPONSE=$(curl -s -w "\n%{http_code}" \
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}" \
             -H "Content-Type: application/json" \
-            -d @- <<'PAYLOAD'
-          {
-            "contents": [{
-              "parts": [{
-                "text": "あなたは個人の自己紹介サイト（HTML/CSS静的サイト）のコードレビュアーです。以下のPR diffをレビューし、JSONのみで回答してください。\n\n## 【最重要】個人情報・機密情報の漏洩チェック\n以下が含まれている場合は必ずCOMMENTとしてください：\n- 電話番号（携帯・固定電話）\n- プライベートなメールアドレス\n- 自宅住所（市区町村より詳細な情報）\n- パスワード・APIキー・アクセストークン・シークレット\n- 非公開にしたい個人的な情報\n※ G-RHRGX55H07（Google Analytics ID）は許容\n\n## コンテンツ品質\n- 日本語・英語の表現に不自然な点がないか\n- 誤字・脱字がないか\n\n## HTMLファイルのチェック\n- img要素にalt属性が適切に設定されているか\n- metaタグ・OGPタグが整合しているか\n- 外部リンクにrel=\"noopener noreferrer\"が付いているか\n- ページ間リンクのhref先が存在するファイルか\n\n## CSSファイルのチェック\n- 不要な重複スタイルや未使用のセレクタがないか\n\n## JS/MJSファイルのチェック\n- APIキー・シークレットがハードコードされていないか\n\n## 回答形式\n- 問題がない場合（軽微な提案含む）: {\"verdict\": \"APPROVE\", \"comment\": \"<日本語で簡潔なサマリ>\"}\n- 重大な問題がある場合: {\"verdict\": \"COMMENT\", \"comment\": \"<日本語で問題の説明>\"}\n- 軽微なスタイル提案はAPPROVEのコメントに含める\n\nDiff:\n${{ steps.diff.outputs.diff }}"
-              }]
-            }],
-            "generationConfig": {
-              "responseMimeType": "application/json"
-            }
-          }
-          PAYLOAD
-          )
+            -d "$PAYLOAD")
 
           HTTP_CODE=$(echo "$RESPONSE" | tail -1)
           BODY=$(echo "$RESPONSE" | head -n -1)
@@ -61,27 +101,30 @@ jobs:
             exit 0
           fi
 
-          VERDICT=$(echo "$BODY" | jq -r '.candidates[0].content.parts[0].text' | jq -r '.verdict // "SKIP"')
-          COMMENT=$(echo "$BODY" | jq -r '.candidates[0].content.parts[0].text' | jq -r '.comment // ""')
+          RAW_TEXT=$(echo "$BODY" | jq -r '.candidates[0].content.parts[0].text // ""')
+          VERDICT=$(echo "$RAW_TEXT" | jq -r 'try (fromjson | .verdict) catch "SKIP"')
+          COMMENT=$(echo "$RAW_TEXT" | jq -r 'try (fromjson | .comment) catch ""')
 
           echo "verdict=$VERDICT" >> $GITHUB_OUTPUT
-          echo "comment=$COMMENT" >> $GITHUB_OUTPUT
+          echo "comment<<EOF" >> $GITHUB_OUTPUT
+          echo "$COMMENT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Approve PR
         if: steps.review.outputs.verdict == 'APPROVE'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REVIEW_COMMENT: ${{ steps.review.outputs.comment }}
         run: |
-          COMMENT="${{ steps.review.outputs.comment }}"
           gh pr review "${{ github.event.pull_request.html_url }}" \
             --approve \
-            --body "**Gemini Review:** ${COMMENT}"
+            --body "**Gemini Review:** ${REVIEW_COMMENT}"
 
       - name: Post comment
         if: steps.review.outputs.verdict == 'COMMENT'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REVIEW_COMMENT: ${{ steps.review.outputs.comment }}
         run: |
-          COMMENT="${{ steps.review.outputs.comment }}"
           gh pr comment "${{ github.event.pull_request.html_url }}" \
-            --body "**Gemini Review:** ${COMMENT}"
+            --body "**Gemini Review:** ${REVIEW_COMMENT}"
