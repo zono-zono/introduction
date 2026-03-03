@@ -1,0 +1,87 @@
+name: Gemini PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  gemini-review:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get PR diff
+        id: diff
+        run: |
+          DIFF=$(git diff origin/${{ github.base_ref }}...HEAD -- . ':(exclude).github/' | head -c 8000)
+          echo "diff<<EOF" >> $GITHUB_OUTPUT
+          echo "$DIFF" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Review with Gemini
+        id: review
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          RESPONSE=$(curl -s -w "\n%{http_code}" \
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}" \
+            -H "Content-Type: application/json" \
+            -d @- <<'PAYLOAD'
+          {
+            "contents": [{
+              "parts": [{
+                "text": "You are a code reviewer for a personal introduction website (HTML/CSS static site). Review the following PR diff and respond in JSON format only.\n\nRules:\n- If there are no critical issues, respond with: {\"verdict\": \"APPROVE\", \"comment\": \"<brief summary in Japanese>\"}\n- If there are critical issues (security risk, broken links, personal info leak like phone/address/API keys), respond with: {\"verdict\": \"COMMENT\", \"comment\": \"<issue description in Japanese>\"}\n- Minor style suggestions → APPROVE with comment\n- Be concise\n\nDiff:\n${{ steps.diff.outputs.diff }}"
+              }]
+            }],
+            "generationConfig": {
+              "responseMimeType": "application/json"
+            }
+          }
+          PAYLOAD
+          )
+
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          BODY=$(echo "$RESPONSE" | head -n -1)
+
+          if [ "$HTTP_CODE" = "429" ]; then
+            echo "verdict=SKIP" >> $GITHUB_OUTPUT
+            echo "Rate limit exceeded, skipping Gemini review"
+            exit 0
+          fi
+
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "verdict=SKIP" >> $GITHUB_OUTPUT
+            echo "Gemini API error: $HTTP_CODE"
+            exit 0
+          fi
+
+          VERDICT=$(echo "$BODY" | jq -r '.candidates[0].content.parts[0].text' | jq -r '.verdict // "SKIP"')
+          COMMENT=$(echo "$BODY" | jq -r '.candidates[0].content.parts[0].text' | jq -r '.comment // ""')
+
+          echo "verdict=$VERDICT" >> $GITHUB_OUTPUT
+          echo "comment=$COMMENT" >> $GITHUB_OUTPUT
+
+      - name: Approve PR
+        if: steps.review.outputs.verdict == 'APPROVE'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          COMMENT="${{ steps.review.outputs.comment }}"
+          gh pr review "${{ github.event.pull_request.html_url }}" \
+            --approve \
+            --body "**Gemini Review:** ${COMMENT}"
+
+      - name: Post comment
+        if: steps.review.outputs.verdict == 'COMMENT'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          COMMENT="${{ steps.review.outputs.comment }}"
+          gh pr comment "${{ github.event.pull_request.html_url }}" \
+            --body "**Gemini Review:** ${COMMENT}"
