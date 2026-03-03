@@ -131,29 +131,3 @@ flowchart LR
 └── wrangler.jsonc          # Cloudflare Workers設定
 ```
 
----
-
-## 開発
-
-### ローカルプレビュー
-
-```bash
-# Cloudflare Workers でローカル起動
-npx wrangler dev
-```
-
-### OGP画像の再生成
-
-```bash
-npm install
-node scripts/generate-ogp.mjs
-# → assets/ogp.jpg が更新される
-```
-
-### デプロイフロー
-
-1. ブランチを切って変更を加える
-2. Pull Request を作成
-3. **CodeRabbit** が自動でコードレビュー
-4. 承認されると **GitHub Actions** が自動マージ
-5. `main` ブランチへのマージを検知して **Cloudflare Workers** が自動デプロイ
