@@ -8,8 +8,10 @@ jobs:
   merge-on-approval:
     runs-on: ubuntu-latest
     if: |
-      github.event.review.user.login == 'coderabbitai[bot]' &&
-      github.event.review.state == 'approved'
+      github.event.review.state == 'approved' &&
+      (github.event.review.user.login == 'coderabbitai[bot]' ||
+       (github.event.review.user.login == 'github-actions[bot]' &&
+        contains(github.event.review.body, 'Gemini Review:')))
     permissions:
       pull-requests: write
       contents: write
